@@ -11,6 +11,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  timeout:10*10000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -28,23 +29,43 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    launchOptions: {
+      args: ["--start-maximized"],
+    },
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
+      name: "edge",
+      use: {
+        channel: 'msedge',
+        launchOptions: {
+          args: ["--start-maximized"], // starting the browser in full screen
+          slowMo: 1000, // a 1000 milliseconds pause before each operation. Useful for slow systems.
+        },
+      },
+    },
+
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        //...devices['Desktop Chrome'],
+        launchOptions: {
+          args: ["--start-maximized"], // starting the browser in full screen
+          slowMo: 1000, // a 1000 milliseconds pause before each operation. Useful for slow systems.
+        }, 
+      },
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { /*...devices['Desktop Firefox'],*/viewport:null, },
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: { /*...devices['Desktop Safari'],*/viewport:null,},
     },
 
     /* Test against mobile viewports. */
@@ -60,11 +81,11 @@ export default defineConfig({
     /* Test against branded browsers. */
      {
        name: 'Microsoft Edge',
-       use: { ...devices['Desktop Edge'], channel: 'msedge' },
+       use: { /*...devices['Desktop Edge'],*/ channel: 'msedge',viewport:null,  },
      },
      {
        name: 'Google Chrome',
-       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+       use: { /*...devices['Desktop Chrome'],*/ channel: 'chrome',viewport:null, },
      },
   ],
 
