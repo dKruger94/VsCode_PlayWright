@@ -47,7 +47,7 @@ export default defineConfig({
       },
     },
 
-    {
+/*    {
       name: 'chromium',
       use: { 
         //...devices['Desktop Chrome'],
@@ -56,7 +56,7 @@ export default defineConfig({
           slowMo: 1000, // a 1000 milliseconds pause before each operation. Useful for slow systems.
         }, 
       },
-    },
+    },*/
 
     //{
       //name: 'firefox',
