@@ -41,7 +41,7 @@ export default defineConfig({
       use: {
         channel: 'msedge',
         launchOptions: {
-          args: ["--start-maximized"], // starting the browser in full screen
+          args: [], // starting the browser in full screen
           slowMo: 1000, // a 1000 milliseconds pause before each operation. Useful for slow systems.
         },
       },
