@@ -37,7 +37,7 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "edge",
+      name: "Edge",
       use: {
         channel: 'msedge',
         launchOptions: {
@@ -58,15 +58,15 @@ export default defineConfig({
       },
     },
 
-    {
-      name: 'firefox',
-      use: { /*...devices['Desktop Firefox'],*/viewport:null, },
-    },
+    //{
+      //name: 'firefox',
+      //use: { /*...devices['Desktop Firefox'],*/viewport:null, },
+    //},
 
-    {
-      name: 'webkit',
-      use: { /*...devices['Desktop Safari'],*/viewport:null,},
-    },
+    //{
+    // name: 'webkit',
+    //  use: { /*...devices['Desktop Safari'],*/viewport:null,},
+    //},
 
     /* Test against mobile viewports. */
     // {
@@ -79,14 +79,14 @@ export default defineConfig({
     // },
 
     /* Test against branded browsers. */
-     {
-       name: 'Microsoft Edge',
-       use: { /*...devices['Desktop Edge'],*/ channel: 'msedge',viewport:null,  },
-     },
-     {
-       name: 'Google Chrome',
-       use: { /*...devices['Desktop Chrome'],*/ channel: 'chrome',viewport:null, },
-     },
+     //{
+     //  name: 'Microsoft Edge',
+     //  use: { /*...devices['Desktop Edge'],*/ channel: 'msedge',viewport:null,  },
+     //},
+     //{
+     //  name: 'Google Chrome',
+     //  use: { /*...devices['Desktop Chrome'],*/ channel: 'chrome',viewport:null, },
+     //},
   ],
 
   /* Run your local dev server before starting the tests */

@@ -1,0 +1,91 @@
+import { test, expect } from '@playwright/test';
+
+test.use({
+  viewport: {
+    height: 952,
+    width: 1872
+  }
+});
+
+test('test', async ({ page }) => {
+  test.slow();
+  await page.goto('https://login.microsoftonline.com/d745f511-951d-4f71-a146-a06065047788/oauth2/authorize?client_id=00000007-0000-0000-c000-000000000000&response_type=code%20id_token&scope=openid%20profile&state=OpenIdConnect.AuthenticationProperties%3DMAAAAIVl2O7KlhHukHMAIkihVCM27Dic-Qr1KAvx7k1atSPAV6_tJdnc5QbfbzQZb-ZvjwEAAAABAAAACS5yZWRpcmVjdC1odHRwczovL3Npc2VkdTM2NS1oZWQtZGVtby5jcm00LmR5bmFtaWNzLmNvbS8%26RedirectTo%3DMAAAAIVl2O7KlhHukHMAIkihVCO6wWwJfeBZC7UdHHtv8afBogm0X2u1x%252fprJFXChdfb4Gh0dHBzOi8vc2lzZWR1MzY1LWhlZC1kZW1vLmNybTQuZHluYW1pY3MuY29tLw%253d%253d%26RedirectToForMcas%3Dhttps%253a%252f%252fsisedu365-hed-demo.crm4.dynamics.com%252f&response_mode=form_post&nonce=638460194691946095.MWY4M2ZmZmItZDdmYS00M2Y2LTg2YzItOWVjMDE2YmQ1NWU2ZTE2MzQ2YmEtZTIzZC00MTZiLWExODYtZmFmNDU3OGEzMWVl&redirect_uri=https%3A%2F%2Fdb3--eurcrmlivesg622.crm4.dynamics.com%2F&max_age=86400&x-client-SKU=ID_NET472&x-client-ver=6.34.0.0');
+  await page.goto('https://login.microsoftonline.com/d745f511-951d-4f71-a146-a06065047788/oauth2/authorize?client_id=00000007-0000-0000-c000-000000000000&response_type=code%20id_token&scope=openid%20profile&state=OpenIdConnect.AuthenticationProperties%3DMAAAAIVl2O7KlhHukHMAIkihVCM27Dic-Qr1KAvx7k1atSPAV6_tJdnc5QbfbzQZb-ZvjwEAAAABAAAACS5yZWRpcmVjdC1odHRwczovL3Npc2VkdTM2NS1oZWQtZGVtby5jcm00LmR5bmFtaWNzLmNvbS8%26RedirectTo%3DMAAAAIVl2O7KlhHukHMAIkihVCO6wWwJfeBZC7UdHHtv8afBogm0X2u1x%252fprJFXChdfb4Gh0dHBzOi8vc2lzZWR1MzY1LWhlZC1kZW1vLmNybTQuZHluYW1pY3MuY29tLw%253d%253d%26RedirectToForMcas%3Dhttps%253a%252f%252fsisedu365-hed-demo.crm4.dynamics.com%252f&response_mode=form_post&nonce=638460194691946095.MWY4M2ZmZmItZDdmYS00M2Y2LTg2YzItOWVjMDE2YmQ1NWU2ZTE2MzQ2YmEtZTIzZC00MTZiLWExODYtZmFmNDU3OGEzMWVl&redirect_uri=https%3A%2F%2Fdb3--eurcrmlivesg622.crm4.dynamics.com%2F&max_age=86400&x-client-SKU=ID_NET472&x-client-ver=6.34.0.0&sso_reload=true');
+  await page.getByPlaceholder('Email, phone, or Skype').click();
+  await page.getByPlaceholder('Email, phone, or Skype').fill('CRMDev@sisedu365.onmicrosoft.com');
+  await page.getByPlaceholder('Email, phone, or Skype').press('Enter');
+  await page.getByPlaceholder('Password').click();
+  await page.getByPlaceholder('Password').fill('Education@135!');
+  await page.getByPlaceholder('Password').press('Enter');
+  await page.getByRole('button', { name: 'Yes' }).click();
+  await page.goto('https://sisedu365-hed-demo.crm4.dynamics.com/main.aspx?forceUCI=1&pagetype=apps');
+  await page.frameLocator('iframe[title="AppLandingPage"]').getByAltText('Edu365');//await page.frameLocator('iframe[title="AppLandingPage"]').getByLabel('Edu365\r\n\r\nPublished by Default Publisher for sisedu365-highereducation.\r\nPublished on 2024/01/18.\r\nUnified Interface.\r\n16 of').click();
+  await page.goto('https://sisedu365-hed-demo.crm4.dynamics.com/main.aspx?appid=063ac8e1-c86a-eb11-a812-000d3ad964ec&pagetype=dashboard&id=738cf670-1ffc-ea11-a815-0022480822ca&type=system&_canOverride=true');
+  //await page.getByRole('checkbox', { name: 'Do not show this Welcome' }).check();
+  //await page.getByRole('button', { name: 'Continue' }).click();
+  await page.getByLabel('Admissions and Enrolment (').click();
+  await page.getByText('Curriculum Management').click();
+  await page.goto('https://sisedu365-hed-demo.crm4.dynamics.com/main.aspx?appid=063ac8e1-c86a-eb11-a812-000d3ad964ec&pagetype=entitylist&etn=sis_qualification&viewid=af81d531-5322-41d5-879e-a861fe1ee2e6&viewType=1039');
+  await page.getByText('Programs').click();
+  await page.getByLabel('New', { exact: true }).click();
+  await page.getByLabel('Program Name').click();
+  await page.getByLabel('Program Name').fill('Playwright Test Program');
+  await page.getByLabel('Description').click();
+  await page.getByLabel('Description').fill('a playwright test');
+  await page.getByLabel('Code').click();
+  await page.getByLabel('Code').fill('pw1');
+  await page.getByLabel('Search records for Qualification, Lookup field').click();
+  await page.getByLabel('Bachelor Degree, 2021/03/02 13:').click();
+  await page.getByLabel('Search records for Education').click();
+  await page.getByLabel('Bachelor, BACH').click();
+  await page.getByLabel('Search records for Faculty,').click();
+  await page.getByLabel('Commerce, 2022/09/05 03:').click();
+  await page.getByLabel('Search records for Department').click();
+  await page.getByLabel('Business, 2022/09/05 03:').click();
+  //await page.locator('[id="id-5600d25a-db90-4213-afec-1d74b5a0c7fe-8-sis_effectivedate5b773807-9fb2-42db-97c3-7a91eff8adff-sis_effectivedate\\.fieldControl-sis_effectivedate\\.fieldControl\\._datecontrol-date-container"]').getByText('').click();
+  //await page.getByLabel('1, March, 2024', { exact: true }).click();
+  //await page.locator('[id="id-5600d25a-db90-4213-afec-1d74b5a0c7fe-9-sis_effectiveenddate5b773807-9fb2-42db-97c3-7a91eff8adff-sis_effectiveenddate\\.fieldControl-sis_effectiveenddate\\.fieldControl\\._datecontrol-date-container"]').getByText('').click();
+  //await page.getByLabel('December').click();
+  //await page.getByLabel('31, December,').click();
+  await page.getByLabel('Toggle menu').click();
+  await page.getByText('Online').click();
+  await page.getByText('Distance').click();
+  await page.getByLabel('Toggle menu').click();
+  await page.getByLabel('Course Level Range Type').selectOption('1');
+  await page.getByLabel('Number of Credits').click();
+  await page.getByLabel('Number of Credits').fill('100');
+  await page.getByLabel('Number of Courses').click();
+  await page.getByLabel('Number of Courses').fill('10');
+  await page.getByLabel('Number of Hours').click();
+  await page.getByLabel('Number of Hours').fill('100');
+  await page.getByLabel('FT Duration', { exact: true }).click();
+  await page.getByLabel('FT Duration', { exact: true }).fill('100');
+  await page.getByLabel('FT Duration Type').selectOption('907670000');
+  await page.getByLabel('Allow PT').selectOption('1');
+  //await page.locator('[id="id-5600d25a-db90-4213-afec-1d74b5a0c7fe-19-sis_lastdateforachievement5b773807-9fb2-42db-97c3-7a91eff8adff-sis_lastdateforachievement\\.fieldControl-sis_lastdateforachievement\\.fieldControl\\._datecontrol-date-container"]').getByText('').click();
+  //await page.getByLabel('December').click();
+  //await page.getByLabel('31, December,').click();
+  //await page.locator('[id="id-5600d25a-db90-4213-afec-1d74b5a0c7fe-21-sis_lastnewenrolment5b773807-9fb2-42db-97c3-7a91eff8adff-sis_lastnewenrolment\\.fieldControl-sis_lastnewenrolment\\.fieldControl\\._datecontrol-date-container"]').getByText('').click();
+  //await page.getByRole('button', { name: 'Navigate to next month April' }).click();
+  //await page.getByLabel('1, April, 2024', { exact: true }).click();
+  await page.getByLabel('Tassel').selectOption('596490000');
+  await page.getByLabel('Cap').selectOption('596490000');
+  await page.getByLabel('Search records for Hood,').click();
+  await page.getByLabel('Green, 2024/01/19 16:').click();
+  await page.getByLabel('Gown').selectOption('596490000');
+  await page.getByLabel('Double Degree').click();
+  await page.getByRole('region', { name: 'Double Degree' }).getByLabel('Double Degree').selectOption('1');
+  await expect(page.locator("[data-id='sis_doubledegree1programmeid-FieldSectionItemContainer']")).toContainText('Double Degree 1 Programme');
+  await expect(page.getByText('Double Degree 2 Programme')).toBeVisible();
+  //await page.getByLabel('Program Requirements').click();
+  //await page.getByLabel('Programme Roles').click();
+  //await page.getByLabel('External Information').click();
+  await page.getByLabel('Save (CTRL+S)').click();
+  await page.waitForTimeout(1000);
+  await page.getByRole('tab', { name: 'Program Requirements' }).click();
+  await expect(page.getByLabel('New Program Entry Requirement')).toBeVisible();
+  await page.getByRole('tab', { name: 'Programme Roles' }).click();
+  await expect(page.getByLabel('New Programme Personnel Role')).toBeVisible();
+  await page.getByLabel('Delete').click();
+  await page.getByRole('button', { name: 'Delete' }).click();
+});
